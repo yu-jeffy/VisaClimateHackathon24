@@ -3,11 +3,16 @@ import App from 'next/app';
 import { CartProvider } from '../context/CartContext';
 import '../styles/globals.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';  // Import FontAwesome CSS
+import NavBar from '../components/NavBar';
+import { CartVisibilityProvider } from '../context/CartVisibilityContext';
 
 function MyApp({ Component, pageProps }) {
     return (
         <CartProvider>
-            <Component {...pageProps} />
+            <CartVisibilityProvider>
+                <NavBar />
+                <Component {...pageProps} />
+            </CartVisibilityProvider>
         </CartProvider>
     );
 }

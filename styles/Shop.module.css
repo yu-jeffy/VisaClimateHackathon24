@@ -92,22 +92,6 @@
     background-color: #218838;
 }
 
-.cartToggleButton {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px;
-    font-size: 1.5rem;
-    border: none;
-    background-color: transparent;
-    color: black;
-    cursor: pointer;
-    z-index: 1100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .cartToggleButton:hover {
     color: #0056b3;
 }

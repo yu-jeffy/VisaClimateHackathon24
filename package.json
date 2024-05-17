@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
+    "@react-three/drei": "^9.105.6",
+    "@react-three/fiber": "^8.16.6",
     "firebase": "^10.12.0",
     "next": "14.2.3",
     "node-fetch": "^3.3.2",
     "openai": "^4.47.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.164.1"
   },
   "devDependencies": {
     "eslint": "^8",

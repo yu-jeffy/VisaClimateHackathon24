@@ -1,6 +1,6 @@
-// pages/shop.js
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { useCartVisibility } from '../context/CartVisibilityContext';
 import styles from '../styles/Shop.module.css';
 import ExpandedItem from '../components/ExpandedItem';
 import Cart from '../components/Cart';
@@ -17,8 +17,8 @@ const Shop = () => {
     const [sortKey, setSortKey] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
     const [selectedItem, setSelectedItem] = useState(null);
-    const [isCartVisible, setIsCartVisible] = useState(false);
     const { addItemToCart } = useCart();
+    const { isCartVisible, toggleCartVisibility } = useCartVisibility();
 
     useEffect(() => {
         fetchItems().then(setItems);
@@ -45,10 +45,6 @@ const Shop = () => {
         setSelectedItem(null);
     };
 
-    const toggleCartVisibility = () => {
-        setIsCartVisible(!isCartVisible);
-    };
-
     const filteredItems = items.filter(item =>
         Object.values(item).some(value =>
             value.toString().toLowerCase().includes(searchTerm.toLowerCase())
@@ -67,9 +63,6 @@ const Shop = () => {
 
     return (
         <div className={styles.shopPage}>
-            <button className={styles.cartToggleButton} onClick={toggleCartVisibility}>
-                <i className={isCartVisible ? 'fas fa-times' : 'fas fa-shopping-cart'}></i>
-            </button>
             <div className={styles.shopContainer}>
                 <h1 className={styles.shopTitle}>Shop</h1>
                 <input

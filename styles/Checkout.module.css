@@ -1,58 +1,31 @@
-/* styles/Cart.module.css */
+/* styles/Checkout.module.css */
 
-.container {
-    position: fixed;
-    right: 0;
-    top: 7vh;
+.checkoutContainer {
     display: flex;
-    flex-direction: column;
-    width: 30vw;
+    width: 100%;
     height: 100vh;
-    background-color: #ccc;
-    z-index: 1000;
-    border-radius: 40px;
+    box-sizing: border-box;
 }
 
-.recipeContainer {
+.cartColumn {
+    flex: 1;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    padding-top: 4vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+.column2 {
     flex: 1;
     padding: 20px;
-    background-color: #ccc;
-    overflow-y: auto;
-    z-index: 1000;
-    border-radius: 0px 0px 0px 40px;
-}
-
-.cartContainer {
-    /* Set a fixed width for the cart container */
-    background-color: #f8f9fa;
-    border-left: 1px solid #ccc;
-    padding: 20px;
-    overflow-y: auto;
-    z-index: 1000;
-    flex: 3;
-    border-radius: 40px 0px 0px 0px;
-}
-
-.cartContainer.visible {
-    transform: translateX(0);
-}
-
-.cartHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    background-color: #fff;
 }
 
 .cartTitle {
     font-size: 2rem;
-}
-
-.closeButton {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .emptyCartMessage {
@@ -102,6 +75,11 @@
 
 .removeItemButton:hover {
     background-color: #c82333;
+}
+
+.totalPrice {
+    font-size: 1.5rem;
+    margin-top: 20px;
 }
 
 .clearCartButton {

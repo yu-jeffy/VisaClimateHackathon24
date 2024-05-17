@@ -1,43 +1,47 @@
-// context/CartContext.js
-import React, { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
 
-const cartReducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return [...state, action.payload];
-    case 'REMOVE_ITEM':
-      return state.filter(item => item.id !== action.payload.id);
-    case 'CLEAR_CART':
-      return [];
-    default:
-      throw new Error(`Unknown action: ${action.type}`);
-  }
-};
+export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const [cart, dispatch] = useReducer(cartReducer, []);
+    const [cart, setCart] = useState([]);
 
-  const addItemToCart = (item) => {
-    dispatch({ type: 'ADD_ITEM', payload: item });
-  };
+    const addItemToCart = (item) => {
+        setCart(prevCart => {
+            const itemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id && cartItem.name === item.name);
+            if (itemIndex >= 0) {
+                const updatedCart = [...prevCart];
+                updatedCart[itemIndex].quantity += 1;
+                return updatedCart;
+            } else {
+                return [...prevCart, { ...item, quantity: 1 }];
+            }
+        });
+    };
+    const removeItemFromCart = (item) => {
+        setCart(prevCart => {
+            const itemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
+            if (itemIndex >= 0) {
+                const updatedCart = [...prevCart];
+                if (updatedCart[itemIndex].quantity > 1) {
+                    updatedCart[itemIndex].quantity -= 1;
+                } else {
+                    updatedCart.splice(itemIndex, 1);
+                }
+                return updatedCart;
+            }
+            return prevCart;
+        });
+    };
 
-  const removeItemFromCart = (item) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: item });
-  };
+    const clearCart = () => {
+        setCart([]);
+    };
 
-  const clearCart = () => {
-    dispatch({ type: 'CLEAR_CART' });
-  };
-
-  return (
-    <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart, clearCart }}>
-      {children}
-    </CartContext.Provider>
-  );
-};
-
-export const useCart = () => {
-  return useContext(CartContext);
+    return (
+        <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart, clearCart }}>
+            {children}
+        </CartContext.Provider>
+    );
 };
