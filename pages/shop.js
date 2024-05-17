@@ -64,7 +64,7 @@ const Shop = () => {
     return (
         <div className={styles.shopPage}>
             <div className={styles.shopContainer}>
-                <h1 className={styles.shopTitle}>Shop</h1>
+                <h1 className={styles.shopTitle}></h1>
                 <input
                     className={styles.searchInput}
                     type="text"

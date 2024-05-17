@@ -31,7 +31,7 @@ const WireframeComponent = () => {
     // Create and add wireframe to the scene
     const wireframe = new Wireframe(geometry, matLine);
     wireframe.computeLineDistances();
-    wireframe.scale.set(0.7, 0.7, 0.7);
+    wireframe.scale.set(1.4, 1.4, 1.4);
     scene.add(wireframe);
     wireframeRef.current = wireframe;
 

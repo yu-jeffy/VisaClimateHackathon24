@@ -5,9 +5,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
 
-        <div className={styles.threeSceneContainer}> 
-          <ThreeScene />
-        </div>
+
 
       <main className={styles.main}>
 
@@ -21,10 +19,14 @@ export default function Home() {
 
       </main>
 
+      <div className={styles.threeSceneContainer}>
+        <ThreeScene />
+      </div>
+
       <footer className={styles.footer}>
         <p className={styles.footerText}>&copy; 2024 Re-VISA Grocery Store. All rights reserved.</p>
       </footer>
-      
+
     </div>
   );
 }
