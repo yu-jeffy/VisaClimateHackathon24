@@ -1,0 +1,22 @@
+{
+    "name": "Oatmeal",
+    "price": 3.99,
+    "expiry_date": "2025-05-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "12 months",
+    "quantity": 40,
+    "nutrition_facts": {
+      "calories": 154,
+      "carbs": 27,
+      "fats": 3.2,
+      "proteins": 5.4,
+      "fiber": 4,
+      "sugar": 1.1
+    },
+    "ingredients": ["Whole Grain Oats"],
+    "category": "Grains",
+    "subcategory": "Oats",
+    "brand": "Healthy Grains",
+    "eco_rating": 88
+  }
+  

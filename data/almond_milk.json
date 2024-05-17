@@ -1,0 +1,22 @@
+{
+    "name": "Almond Milk",
+    "price": 3.99,
+    "expiry_date": "2024-07-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "60 days",
+    "quantity": 40,
+    "nutrition_facts": {
+      "calories": 13,
+      "carbs": 1,
+      "fats": 1,
+      "proteins": 0.5,
+      "fiber": 0.5,
+      "sugar": 0.5
+    },
+    "ingredients": ["Almonds", "Water", "Salt"],
+    "category": "Dairy",
+    "subcategory": "Milk Alternatives",
+    "brand": "NutMilk",
+    "eco_rating": 88
+  }
+  

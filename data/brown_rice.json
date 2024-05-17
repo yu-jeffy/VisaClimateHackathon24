@@ -1,0 +1,22 @@
+{
+    "name": "Brown Rice",
+    "price": 3.29,
+    "expiry_date": "2025-05-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "12 months",
+    "quantity": 60,
+    "nutrition_facts": {
+      "calories": 216,
+      "carbs": 45,
+      "fats": 1.8,
+      "proteins": 5,
+      "fiber": 3.5,
+      "sugar": 0.7
+    },
+    "ingredients": ["Brown Rice"],
+    "category": "Grains",
+    "subcategory": "Rice",
+    "brand": "Rice World",
+    "eco_rating": 85
+  }
+  

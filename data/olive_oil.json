@@ -1,0 +1,22 @@
+{
+    "name": "Olive Oil",
+    "price": 8.99,
+    "expiry_date": "2025-05-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "12 months",
+    "quantity": 25,
+    "nutrition_facts": {
+      "calories": 119,
+      "carbs": 0,
+      "fats": 13.5,
+      "proteins": 0,
+      "fiber": 0,
+      "sugar": 0
+    },
+    "ingredients": ["Olive Oil"],
+    "category": "Condiments",
+    "subcategory": "Oils",
+    "brand": "Olive Tree",
+    "eco_rating": 85
+  }
+  

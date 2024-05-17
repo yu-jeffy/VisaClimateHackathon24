@@ -1,0 +1,22 @@
+{
+    "name": "Granola Bars",
+    "price": 4.99,
+    "expiry_date": "2025-05-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "12 months",
+    "quantity": 50,
+    "nutrition_facts": {
+      "calories": 100,
+      "carbs": 17,
+      "fats": 3,
+      "proteins": 2,
+      "fiber": 2,
+      "sugar": 7
+    },
+    "ingredients": ["Oats", "Honey", "Nuts", "Dried Fruits"],
+    "category": "Snacks",
+    "subcategory": "Bars",
+    "brand": "Nature's Snack",
+    "eco_rating": 84
+  }
+  

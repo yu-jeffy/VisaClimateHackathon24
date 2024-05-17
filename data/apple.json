@@ -1,0 +1,22 @@
+{
+    "name": "Apple",
+    "price": 3.99,
+    "expiry_date": "2024-05-30",
+    "manufacture_date": "2024-05-15",
+    "shelf_life": "15 days",
+    "quantity": 50,
+    "nutrition_facts": {
+      "calories": 52,
+      "carbs": 14,
+      "fats": 0.2,
+      "proteins": 0.3,
+      "fiber": 2.4,
+      "sugar": 10
+    },
+    "ingredients": ["Apple"],
+    "category": "Fruits",
+    "subcategory": "Fresh Fruits",
+    "brand": "Nature's Best",
+    "eco_rating": 95
+  }
+  

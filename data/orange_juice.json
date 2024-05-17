@@ -1,0 +1,22 @@
+{
+    "name": "Orange Juice",
+    "price": 3.99,
+    "expiry_date": "2024-06-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "30 days",
+    "quantity": 50,
+    "nutrition_facts": {
+      "calories": 45,
+      "carbs": 11,
+      "fats": 0.2,
+      "proteins": 0.7,
+      "fiber": 0.5,
+      "sugar": 9
+    },
+    "ingredients": ["Orange Juice"],
+    "category": "Beverages",
+    "subcategory": "Juices",
+    "brand": "Citrus Grove",
+    "eco_rating": 85
+  }
+  

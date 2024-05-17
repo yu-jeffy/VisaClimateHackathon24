@@ -1,0 +1,22 @@
+{
+    "name": "Broccoli",
+    "price": 2.49,
+    "expiry_date": "2024-05-18",
+    "manufacture_date": "2024-05-08",
+    "shelf_life": "10 days",
+    "quantity": 30,
+    "nutrition_facts": {
+      "calories": 55,
+      "carbs": 11.2,
+      "fats": 0.6,
+      "proteins": 3.7,
+      "fiber": 4.7,
+      "sugar": 2.2
+    },
+    "ingredients": ["Broccoli"],
+    "category": "Vegetables",
+    "subcategory": "Cruciferous",
+    "brand": "Green Veggies",
+    "eco_rating": 90
+  }
+  

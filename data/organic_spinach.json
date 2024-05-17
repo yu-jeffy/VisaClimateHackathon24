@@ -1,0 +1,22 @@
+{
+    "name": "Organic Spinach",
+    "price": 4.99,
+    "expiry_date": "2024-05-20",
+    "manufacture_date": "2024-05-10",
+    "shelf_life": "10 days",
+    "quantity": 25,
+    "nutrition_facts": {
+      "calories": 23,
+      "carbs": 3.6,
+      "fats": 0.4,
+      "proteins": 2.9,
+      "fiber": 2.2,
+      "sugar": 0.4
+    },
+    "ingredients": ["Spinach"],
+    "category": "Vegetables",
+    "subcategory": "Leafy Greens",
+    "brand": "Green Earth",
+    "eco_rating": 90
+  }
+  

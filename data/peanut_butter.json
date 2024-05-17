@@ -1,0 +1,22 @@
+{
+    "name": "Peanut Butter",
+    "price": 4.49,
+    "expiry_date": "2025-05-01",
+    "manufacture_date": "2024-05-01",
+    "shelf_life": "12 months",
+    "quantity": 35,
+    "nutrition_facts": {
+      "calories": 94,
+      "carbs": 3,
+      "fats": 8,
+      "proteins": 4,
+      "fiber": 1,
+      "sugar": 1
+    },
+    "ingredients": ["Peanuts", "Salt"],
+    "category": "Condiments",
+    "subcategory": "Nut Butters",
+    "brand": "Nutty Delight",
+    "eco_rating": 80
+  }
+  

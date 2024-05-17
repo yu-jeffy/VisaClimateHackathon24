@@ -1,0 +1,22 @@
+{
+    "name": "Greek Yogurt",
+    "price": 5.49,
+    "expiry_date": "2024-06-15",
+    "manufacture_date": "2024-05-20",
+    "shelf_life": "26 days",
+    "quantity": 45,
+    "nutrition_facts": {
+      "calories": 59,
+      "carbs": 3.6,
+      "fats": 0.4,
+      "proteins": 10,
+      "fiber": 0,
+      "sugar": 3.2
+    },
+    "ingredients": ["Milk", "Live Active Cultures"],
+    "category": "Dairy",
+    "subcategory": "Yogurt",
+    "brand": "YogurtLand",
+    "eco_rating": 75
+  }
+  
