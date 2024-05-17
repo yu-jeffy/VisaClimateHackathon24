@@ -1,90 +1,107 @@
 // pages/shop.js
 import { useEffect, useState } from 'react';
+import { useCart } from '../context/CartContext';
+import styles from '../styles/Shop.module.css';
+import ExpandedItem from '../components/ExpandedItem';
+import Cart from '../components/Cart';
 
 const fetchItems = async () => {
-  const response = await fetch('/api/fetch-items?num=0'); // Fetch all items
-  const data = await response.json();
-  return data.items;
+    const response = await fetch('/api/fetch-items?num=0'); // Fetch all items
+    const data = await response.json();
+    return data.items;
 };
 
 const Shop = () => {
-  const [items, setItems] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortKey, setSortKey] = useState('eco_rating');
-  const [sortOrder, setSortOrder] = useState('asc');
+    const [items, setItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortKey, setSortKey] = useState('');
+    const [sortOrder, setSortOrder] = useState('asc');
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [isCartVisible, setIsCartVisible] = useState(false);
+    const { addItemToCart } = useCart();
 
-  useEffect(() => {
-    fetchItems().then(setItems);
-  }, []);
+    useEffect(() => {
+        fetchItems().then(setItems);
+    }, []);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
-  const handleSort = (key) => {
-    if (sortKey === key) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortKey(key);
-      setSortOrder('asc');
-    }
-  };
-
-  const filteredItems = items.filter(item =>
-    Object.values(item).some(value =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
-
-  const sortedItems = filteredItems.sort((a, b) => {
-    if (a[sortKey] < b[sortKey]) return sortOrder === 'asc' ? -1 : 1;
-    if (a[sortKey] > b[sortKey]) return sortOrder === 'asc' ? 1 : -1;
-    return 0;
-  });
-
-  return (
-    <div>
-      <h1>Shop</h1>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <div>
-        <button onClick={() => handleSort('eco_rating')}>Sort by Eco-Rating</button>
-        <button onClick={() => handleSort('name')}>Sort by Name</button>
-        <button onClick={() => handleSort('price')}>Sort by Price</button>
-        <button onClick={() => handleSort('nutrition_facts.calories')}>Sort by Calories</button>
-      </div>
-      <div className="item-grid">
-        {sortedItems.map((item, index) => (
-          <div key={index} className="item-card" onClick={() => alert('Item clicked')}>
-            <h2>{item.name}</h2>
-            <p>Price: ${item.price}</p>
-            <p>Eco-Rating: {item.eco_rating}</p>
-          </div>
-        ))}
-      </div>
-      <style jsx>{`
-        .item-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 16px;
+    const handleSort = (key) => {
+        if (sortKey === key) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortKey(key);
+            setSortOrder('asc');
         }
-        .item-card {
-          border: 1px solid #ccc;
-          padding: 16px;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: transform 0.2s;
-        }
-        .item-card:hover {
-          transform: scale(1.05);
-        }
-      `}</style>
-    </div>
-  );
+    };
+
+    const handleItemClick = (item) => {
+        setSelectedItem(item);
+    };
+
+    const handleClosePopup = () => {
+        setSelectedItem(null);
+    };
+
+    const toggleCartVisibility = () => {
+        setIsCartVisible(!isCartVisible);
+    };
+
+    const filteredItems = items.filter(item =>
+        Object.values(item).some(value =>
+            value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    );
+
+    const sortedItems = filteredItems.sort((a, b) => {
+        const keys = sortKey.split('.');
+        const aValue = keys.reduce((acc, key) => acc[key], a);
+        const bValue = keys.reduce((acc, key) => acc[key], b);
+
+        if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+        if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
+        return 0;
+    });
+
+    return (
+        <div className={styles.shopPage}>
+            <button className={styles.cartToggleButton} onClick={toggleCartVisibility}>
+                <i className={isCartVisible ? 'fas fa-times' : 'fas fa-shopping-cart'}></i>
+            </button>
+            <div className={styles.shopContainer}>
+                <h1 className={styles.shopTitle}>Shop</h1>
+                <input
+                    className={styles.searchInput}
+                    type="text"
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChange={handleSearch}
+                />
+                <div className={styles.sortButtonsContainer}>
+                    <button className={styles.sortButton} onClick={() => handleSort('eco_rating')}>Sort by Eco-Rating</button>
+                    <button className={styles.sortButton} onClick={() => handleSort('name')}>Sort by Name</button>
+                    <button className={styles.sortButton} onClick={() => handleSort('price')}>Sort by Price</button>
+                    <button className={styles.sortButton} onClick={() => handleSort('nutrition_facts.calories')}>Sort by Calories</button>
+                </div>
+                <div className={styles.itemGrid}>
+                    {sortedItems.map((item, index) => (
+                        <div key={index} className={styles.itemCard} onClick={() => handleItemClick(item)}>
+                            <h2 className={styles.itemName}>{item.name}</h2>
+                            <p className={styles.itemPrice}>Price: ${item.price}</p>
+                            <p className={styles.itemEcoRating}>Eco-Rating: {item.eco_rating}</p>
+                            <button className={styles.addToCartButton} onClick={(e) => { e.stopPropagation(); addItemToCart(item); }}>Add to Cart</button>
+                        </div>
+                    ))}
+                </div>
+                {selectedItem && (
+                    <ExpandedItem item={selectedItem} onClose={handleClosePopup} />
+                )}
+            </div>
+            <Cart isVisible={isCartVisible} toggleVisibility={toggleCartVisibility} />
+        </div>
+    );
 };
 
 export default Shop;

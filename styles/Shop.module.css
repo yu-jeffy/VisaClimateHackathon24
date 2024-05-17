@@ -1,0 +1,113 @@
+/* styles/Shop.module.css */
+.shopPage {
+    display: flex;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.shopContainer {
+    flex: 1;
+    padding: 20px;
+    max-width: calc(100% - 300px);
+    margin: 0 auto;
+}
+
+.shopTitle {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.sortButtonsContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.sortButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sortButton:hover {
+    background-color: #0056b3;
+}
+
+.itemGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.itemCard {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.itemCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.itemName {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.itemPrice,
+.itemEcoRating {
+    margin-bottom: 10px;
+}
+
+.addToCartButton {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.addToCartButton:hover {
+    background-color: #218838;
+}
+
+.cartToggleButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartToggleButton:hover {
+    color: #0056b3;
+}
