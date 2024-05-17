@@ -1,52 +1,81 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
-import { CylinderGeometry, Vector3 } from 'three';
-import { MeshStandardMaterial, Mesh } from 'three';
+import React, { useEffect, useRef } from 'react';
+import { Canvas, useFrame, extend, useThree } from '@react-three/fiber';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial';
+import { Wireframe } from 'three/examples/jsm/lines/Wireframe';
+import { WireframeGeometry2 } from 'three/examples/jsm/lines/WireframeGeometry2';
 
-// Extend the THREE namespace to include CylinderGeometry
-extend({ CylinderGeometry });
+// Extend the component to use three.js extras
+extend({ OrbitControls, LineMaterial, Wireframe, WireframeGeometry2 });
 
-function Arrow({ position, rotation }) {
-  const meshRef = useRef();
+const WireframeComponent = () => {
+  const { scene, camera, gl, size } = useThree();
+  const wireframeRef = useRef();
+  const controlsRef = useRef();
 
-  return (
-    <mesh ref={meshRef} position={position} rotation={rotation}>
-      <cylinderGeometry args={[0.1, 0.1, 2, 32]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
-  );
-}
+  useEffect(() => {
+    // Setup camera
+    camera.position.set(30, 30, 30);
+    camera.lookAt(0, 0, 0);
 
-function Arrows() {
-  const groupRef = useRef();
+    // Create geometry and material for the wireframe
+    const geo = new THREE.IcosahedronGeometry(20, 1);
+    const geometry = new WireframeGeometry2(geo);
+    const matLine = new LineMaterial({
+      color: 0x4080ff,
+      linewidth: 5, // in pixels
+      dashed: false,
+    });
+
+    // Create and add wireframe to the scene
+    const wireframe = new Wireframe(geometry, matLine);
+    wireframe.computeLineDistances();
+    wireframe.scale.set(0.7, 0.7, 0.7);
+    scene.add(wireframe);
+    wireframeRef.current = wireframe;
+
+    // Setup orbit controls
+    const controls = new OrbitControls(camera, gl.domElement);
+    controls.minDistance = 10;
+    controls.maxDistance = 500;
+    controlsRef.current = controls;
+
+    const handleResize = () => {
+      const { innerWidth, innerHeight } = window;
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      gl.setSize(innerWidth, innerHeight);
+      matLine.resolution.set(innerWidth, innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      scene.remove(wireframe);
+      controls.dispose();
+    };
+  }, [camera, gl, scene]);
 
   useFrame(() => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += 0.01;
-      groupRef.current.children.forEach((child, index) => {
-        const angle = (performance.now() / 1000 + index * (Math.PI * 2) / 3) % (Math.PI * 2);
-        child.position.set(Math.cos(angle) * 2, 0, Math.sin(angle) * 2);
-        child.rotation.set(0, -angle, Math.PI / 2);
-      });
+    if (wireframeRef.current) {
+      wireframeRef.current.rotation.x += 0.01;
+      wireframeRef.current.rotation.y += 0.01;
     }
   });
 
-  return (
-    <group ref={groupRef}>
-      <Arrow />
-      <Arrow />
-      <Arrow />
-    </group>
-  );
-}
+  return null;
+};
 
-export default function ThreeScene() {
+const ThreeScene = () => {
   return (
-    <Canvas>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <Arrows />
+    <Canvas style={{ width: '100vw', height: '100vh' }}>
+      <ambientLight />
+      <WireframeComponent />
     </Canvas>
   );
-}
+};
+
+export default ThreeScene;

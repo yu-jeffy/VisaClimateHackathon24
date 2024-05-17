@@ -63,3 +63,11 @@
 .link:hover {
   text-decoration: underline;
 }
+
+.threeSceneContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 100vw;
+}
