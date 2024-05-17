@@ -3,7 +3,7 @@ import React from 'react';
 
 const UploadPage = () => {
   const handleUpload = async () => {
-    const response = await fetch('/api/upload-json', {
+    const response = await fetch('/api/upload-items', {
       method: 'POST',
     });
 
