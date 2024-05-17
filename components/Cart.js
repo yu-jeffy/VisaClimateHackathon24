@@ -30,7 +30,7 @@ const Cart = ({ isVisible, toggleVisibility }) => {
                                 ))}
                             </ul>
                             <p className={styles.totalPrice}>Total: ${totalPrice}</p>
-                            <button className={styles.clearCartButton} onClick={clearCart}>Clear Cart</button>
+                            {/* <button className={styles.clearCartButton} onClick={clearCart}>Clear Cart</button> */}
                         </>
                     )}
                 </div>
