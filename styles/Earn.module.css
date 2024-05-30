@@ -1,0 +1,17 @@
+.earnContainer {
+    padding: 2rem;
+}
+
+.dropdownContainer {
+    margin-top: 2rem;
+}
+
+.label {
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+.dropdown {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
