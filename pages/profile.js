@@ -47,7 +47,7 @@ export default function Profile() {
         <ul>
           {txHistory.map((tx) => (
             <li key={tx.tx_id}>
-              <p>Store: {tx.store_name}</p>
+              <p>Store: {tx.name_id}</p>
               <p>Amount: ${tx.amount}</p>
               <p>Claimed: {tx.claimed ? 'Yes' : 'No'}</p>
             </li>

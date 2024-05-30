@@ -1,45 +1,16 @@
 import { useEffect, useState } from 'react';
 import { fetchStores } from '../lib/fetchStores';
 import styles from '../styles/Earn.module.css';
-import React from 'react';
-import EarnMeter from '../components/EarnMeter';
 import { useUser } from '../context/UserContext';
-import { db } from '../lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { useRouter } from 'next/router';
-import StoreSuggest from '../components/StoreSuggest';
+import router from 'next/router';
+import { v4 as uuidv4 } from 'uuid';
 
-export default function Earn() {
-    const [userPoints, setUserPoints] = useState(0);
-    const [totalGoal, setTotalGoal] = useState(100);
-
+export default function AddTransaction() {
     const { user } = useUser();
-    const [userData, setUserData] = useState(null);
-    const [txHistory, setTxHistory] = useState([]);
-
     const [stores, setStores] = useState([]);
     const [selectedStore, setSelectedStore] = useState('');
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
-
-    const router = useRouter();
-
-    useEffect(() => {
-        if (user) {
-            const fetchUserData = async () => {
-                const userDocRef = doc(db, 'user_profiles', user.uid);
-                const userDoc = await getDoc(userDocRef);
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    setUserData(userData);
-                    setTxHistory(userData.tx_history);
-                    setUserPoints(userData.points_current_month || 0);
-                }
-            };
-
-            fetchUserData();
-        }
-    }, [user]);
 
     useEffect(() => {
         if (!user) {
@@ -67,49 +38,41 @@ export default function Earn() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setMessage('');
-        console.log(selectedStore);
 
-        const response = await fetch('/api/claimTransaction', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                userId: user.uid,
-                amount: parseFloat(amount),
-                name_id: selectedStore,
-            }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            const updatedTxHistory = txHistory.map(tx => {
-                if (tx.name_id === selectedStore && tx.amount === parseFloat(amount) && !tx.claimed) {
-                    return { ...tx, claimed: true };
-                }
-                return tx;
+        try {
+            const response = await fetch('/api/addTransaction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: user.uid,
+                    amount: parseFloat(amount),
+                    name_id: selectedStore,
+                }),
             });
 
-            setTxHistory(updatedTxHistory);
-            setUserPoints(prevPoints => prevPoints + result.pointsToAdd);
+            const result = await response.json();
 
-            setMessage(`Points added: ${result.pointsToAdd}`);
-        } else {
-            setMessage(result.error || 'Error claiming transaction.');
+            if (response.ok) {
+                setMessage(`Transaction added successfully: ${JSON.stringify(result.newTransaction)}`);
+            } else {
+                setMessage(result.error || 'Error adding transaction.');
+            }
+        } catch (error) {
+            console.error('Error adding transaction:', error);
+            setMessage('Error adding transaction.');
         }
     };
 
     if (!user) {
-        return <p>Please log in to view your profile.</p>;
+        return <p>Please log in to add a transaction.</p>;
     }
 
     return (
         <div className={styles.earnContainer}>
-            <h1>Earn</h1>
-            <EarnMeter points={userPoints} goal={totalGoal} />
+            <h1>Add Transaction</h1>
             <form onSubmit={handleSubmit} className={styles.earnForm}>
-                Add a transaction:
                 <div className={styles.dropdownContainer}>
                     <label htmlFor="storeSelect" className={styles.label}>Select a store:</label>
                     <select id="storeSelect" value={selectedStore} onChange={handleStoreChange} className={styles.dropdown}>
@@ -135,9 +98,6 @@ export default function Earn() {
                 <button type="submit" className={styles.submitButton}>Submit</button>
                 {message && <p className={styles.message}>{message}</p>}
             </form>
-            {
-                userData && <StoreSuggest familySize={userData.family_size} annualIncome={userData.annual_income} />
-            }
         </div>
     );
 }
