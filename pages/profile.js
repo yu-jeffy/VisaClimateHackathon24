@@ -38,6 +38,8 @@ export default function Profile() {
           <p>Email: {userData.email}</p>
           <p>Annual Income: ${userData.annual_income}</p>
           <p>Family Size: {userData.family_size}</p>
+          <p>Points Current Month: {userData.points_current_month}</p>
+          <p>Points Lifetime: {userData.points_lifetime}</p>
         </div>
       )}
       <h2>Transaction History</h2>

@@ -34,6 +34,8 @@ export default function SignUpForm() {
                 annual_income: parseFloat(annualIncome),
                 family_size: parseInt(familySize, 10),
                 tx_history: [],
+                points_current_month: 0,
+                points_lifetime: 0
             });
 
             setSuccess('Signup successful');
