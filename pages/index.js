@@ -1,32 +1,24 @@
 import styles from '../styles/index.module.css';
-import ThreeScene from '../components/ThreeScene';
+import Link from 'next/link';
+import Head from 'next/head';
+import { useState, useEffect } from 'react';
 
-export default function Home() {
+const CustomHead = () => (
+  <Head>
+    <title>Home Page</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta name="description" content="This is the Home Page" />
+  </Head>
+);
+
+function Home() {
   return (
     <div className={styles.container}>
-
-
-
-      <main className={styles.main}>
-
-        <h2 className={styles.subtitle}>Welcome to Re-VISA</h2>
-        <p className={styles.text}>Your one-stop shop for all your grocery needs. Fresh, quality products at affordable prices.</p>
-
-        <section id="products" className={styles.section}>
-          <h3 className={styles.sectionTitle}>Our Products</h3>
-          <p className={styles.text}>Explore our extensive collection of groceries, including fresh fruits and vegetables, dairy products, baked goods, and much more.</p>
-        </section>
-
-      </main>
-
-      <div className={styles.threeSceneContainer}>
-        <ThreeScene />
-      </div>
-
-      <footer className={styles.footer}>
-        <p className={styles.footerText}>&copy; 2024 Re-VISA Grocery Store. All rights reserved.</p>
-      </footer>
-
+      <CustomHead />
+      <h1>Home Page</h1>
+      <p>This is the Home Page</p>
     </div>
   );
 }
+
+export default Home;
