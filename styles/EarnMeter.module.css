@@ -1,0 +1,26 @@
+.earnMeterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.earnMeter {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.earnMeterFill {
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.5s ease;
+}
+
+.earnMeterText {
+    font-size: 14px;
+    color: #333;
+}
