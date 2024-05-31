@@ -9,16 +9,17 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <div className={styles.logo}>
-                <Link href="/" className={styles.logoText}>VISA GROCERY</Link>
+                <Link href="/" className={styles.logoText}>VISA EcoEarn</Link>
             </div>
             <div className={styles.navLinks}>
-                <Link href="/earn" className={styles.navLinkText}>Earn</Link>
-                <Link href="/profile" className={styles.navLinkText}>Profile</Link>
-                <Link href="/recipes" className={styles.navLinkText}>Recipes</Link>
-                <Link href="/receipts" className={styles.navLinkText}>Receipts</Link>
-                <Link href="/add_tx" className={styles.navLinkText}>Add_Tx</Link>
+
                 {user ? (
                     <>
+                        <Link href="/earn" className={styles.navLinkText}>Earn</Link>
+                        <Link href="/add_tx" className={styles.navLinkText}>Add_Tx</Link>
+                        <Link href="/recipes" className={styles.navLinkText}>Recipes</Link>
+                        <Link href="/receipts" className={styles.navLinkText}>Receipts</Link>
+                        <Link href="/profile" className={styles.navLinkText}>Profile</Link>
                         <SignOutButton className={styles.navLinkText}/>
                     </>
                 ) : (
