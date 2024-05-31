@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         {
           role: "user",
           content: [
-            { type: "text", text: "Please provide an overall purchase eco-rating based on the items in this receipt and their sustainability scoring." },
+            { type: "text", text: "You are a receipt scanner assistant that rates purchases based on sustainability for VISA EcoEarn. Please provide an overall purchase eco-rating out of 100 (100 being the most sustainable) based on the items in this receipt and their sustainability scoring. Answer in a single concise paragraph in plaintext with no styling, no lists, no bullets, no line breaks." },
             {
               type: "image_url",
               image_url: {
