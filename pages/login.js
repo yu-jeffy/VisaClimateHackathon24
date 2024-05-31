@@ -2,23 +2,23 @@ import styles from '../styles/index.module.css';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
+import LogInForm from '../components/LogInForm';
 
 const CustomHead = () => (
   <Head>
-    <title>Home Page</title>
+    <title>Login Page</title>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <meta name="description" content="This is the Home Page" />
+    <meta name="description" content="This is the Login Page" />
   </Head>
 );
 
-function Home() {
+function LoginPage() {
   return (
     <div className={styles.container}>
       <CustomHead />
-      <h1>Home Page</h1>
-      <p>This is the Home Page</p>
+      <LogInForm />
     </div>
   );
 }
 
-export default Home;
+export default LoginPage;

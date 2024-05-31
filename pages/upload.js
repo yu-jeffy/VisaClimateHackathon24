@@ -1,25 +1,27 @@
-// pages/upload.js
-import React from 'react';
+import { useState } from 'react';
 
-const UploadPage = () => {
+export default function Upload() {
+  const [message, setMessage] = useState('');
+
   const handleUpload = async () => {
-    const response = await fetch('/api/upload-items', {
-      method: 'POST',
-    });
+    try {
+      const response = await fetch('/api/uploadStores', {
+        method: 'POST',
+      });
 
-    if (response.ok) {
-      console.log('Files uploaded successfully');
-    } else {
-      console.error('Error uploading files');
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error('Error uploading stores:', error);
+      setMessage('Error uploading stores');
     }
   };
 
   return (
     <div>
-      <h1>Upload JSON Files</h1>
-      <button onClick={handleUpload}>Upload</button>
+      <h1>Upload Stores</h1>
+      <button onClick={handleUpload}>Upload Stores Data</button>
+      {message && <p>{message}</p>}
     </div>
   );
-};
-
-export default UploadPage;
+}

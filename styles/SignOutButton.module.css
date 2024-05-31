@@ -1,0 +1,14 @@
+.signOutButton {
+    background-color: lightpink;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.signOutButton:hover {
+    background-color: pink;
+}
