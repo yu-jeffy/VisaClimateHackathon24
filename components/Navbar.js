@@ -16,7 +16,7 @@ export default function Navbar() {
                 {user ? (
                     <>
                         <Link href="/earn" className={styles.navLinkText}>Earn</Link>
-                        <Link href="/add_tx" className={styles.navLinkText}>Add_Tx</Link>
+                        <Link href="/add_tx" className={styles.navLinkText}>Add Transaction (for testing)</Link>
                         <Link href="/recipes" className={styles.navLinkText}>Recipes</Link>
                         <Link href="/receipts" className={styles.navLinkText}>Receipts</Link>
                         <Link href="/profile" className={styles.navLinkText}>Profile</Link>
