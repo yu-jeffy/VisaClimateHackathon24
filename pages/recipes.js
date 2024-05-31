@@ -53,6 +53,9 @@ const Recipes = () => {
                             config={config}
                             messageParser={MessageParser}
                             actionProvider={ActionProvider}
+                            runInitialMessagesWithHistory
+                            headerText='VISA Recipe Builder'
+                            placeholderText='type a message...'
                         />
                     </div>
                 </div>
