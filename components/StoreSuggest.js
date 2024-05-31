@@ -5,7 +5,12 @@ export default function StoreSuggest({ familySize, annualIncome }) {
 
     useEffect(() => {
         const fetchRecommendation = async () => {
-            const systemPrompt = 'You are an expert in store recommendations based on spending behavior. Recommend stores to customers based on their family size and income. Be conversational, professional, helpful, friendly, and provide a personalized experience. DO NOT mention their family size, income, nor category in the response. Do not reveal that you have any personal information of the user. Format your response as a single conversational plaintext paragraph.';
+            const systemPrompt = `You are an expert in store recommendations based on spending behavior. 
+            Recommend stores to customers based on their family size and income. 
+            Be conversational, professional, helpful, friendly, and polite.
+            Avoid duplicating store names in the response, such as Amazon and Amazon.com. Avoid unecessary appendages to store names, such as Amazon Prime and URL extensions.
+            DO NOT mention their family size, income, nor category in the response. Do not reveal that you have any personal information of the user. 
+            Format your response as a single conversational plaintext paragraph. Format store names to be conversational and flow naturally in the response.`;
             // console.log(familySize, annualIncome);
             const userPrompt = `Recommend stores for a user with family size of ${familySize} and income of ${annualIncome} from the following list. Only pick stores with properly formatted names.
 
