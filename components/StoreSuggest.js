@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styles from '../styles/StoreSuggest.module.css';
 
 export default function StoreSuggest({ familySize, annualIncome }) {
     const [recommendation, setRecommendation] = useState('');
@@ -8,10 +9,9 @@ export default function StoreSuggest({ familySize, annualIncome }) {
             const systemPrompt = `You are an expert in store recommendations based on spending behavior. 
             Recommend stores to customers based on their family size and income. 
             Be conversational, professional, helpful, friendly, and polite.
-            Avoid duplicating store names in the response, such as Amazon and Amazon.com. Avoid unecessary appendages to store names, such as Amazon Prime and URL extensions.
+            Avoid duplicating store names in the response, such as Amazon and Amazon.com. Avoid unnecessary appendages to store names, such as Amazon Prime and URL extensions.
             DO NOT mention their family size, income, nor category in the response. Do not reveal that you have any personal information of the user. 
             Format your response as a single conversational plaintext paragraph. Format store names to be conversational and flow naturally in the response.`;
-            // console.log(familySize, annualIncome);
             const userPrompt = `Recommend stores for a user with family size of ${familySize} and income of ${annualIncome} from the following list. Only pick stores with properly formatted names.
 
 If Family Size > 1, categorize as Family or Frugal Family based on income.
@@ -364,6 +364,7 @@ ATG TICKETS
 EURO CAR PARKS
 `;
 
+
             try {
                 const response = await fetch('/api/gpt4', {
                     method: 'POST',
@@ -387,9 +388,9 @@ EURO CAR PARKS
     }, [familySize, annualIncome]);
 
     return (
-        <div>
-            <h2>Store Recommendations</h2>
-            {recommendation ? <p>{recommendation}</p> : <p>Loading...</p>}
+        <div className={styles.suggestContainer}>
+            <h2 className={styles.title}>Store Recommendations</h2>
+            {recommendation ? <p className={styles.recommendationText}>{recommendation}</p> : <p className={styles.recommendationText}>Loading...</p>}
         </div>
     );
 }

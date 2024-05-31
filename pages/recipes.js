@@ -44,8 +44,8 @@ const Recipes = () => {
     }, [user]);
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ flex: 3 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+            <div style={{ flex: 5 }}>
                 <div className={styles.chatbotContainer}>
                     <div className={styles.chatbotHeader}>Recipe Builder</div>
                     <div className={styles.chatbotBody}>
@@ -62,7 +62,7 @@ const Recipes = () => {
             </div>
             {
                 userData &&
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 3, marginRight: "3.5vw" }}>
                     <StoreSuggest familySize={userData.family_size} annualIncome={userData.annual_income} />
                 </div>
             }

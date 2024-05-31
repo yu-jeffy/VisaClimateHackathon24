@@ -67,7 +67,6 @@ export default function Earn() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setMessage('');
-        console.log(selectedStore);
 
         const response = await fetch('/api/claimTransaction', {
             method: 'POST',
@@ -106,10 +105,10 @@ export default function Earn() {
 
     return (
         <div className={styles.earnContainer}>
-            <h1>Earn</h1>
+            <h1 className={styles.title}>Sustainability Reward Points</h1>
             <EarnMeter points={userPoints} goal={totalGoal} />
             <form onSubmit={handleSubmit} className={styles.earnForm}>
-                Add a transaction:
+                <h2 className={styles.title2}>Redeem a Purchase:</h2>  
                 <div className={styles.dropdownContainer}>
                     <label htmlFor="storeSelect" className={styles.label}>Select a store:</label>
                     <select id="storeSelect" value={selectedStore} onChange={handleStoreChange} className={styles.dropdown}>

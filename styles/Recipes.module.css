@@ -1,9 +1,9 @@
 /* Recipes.module.css */
 
 .chatbotContainer {
-    height: calc(95vh - 100px); /* Adjust to fit within the viewport minus some offset */
+    height: calc(95vh - 100px);
     width: 100%;
-    max-width: 500px; /* Maximum width for larger screens */
+    max-width: 45vw;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
