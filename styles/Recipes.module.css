@@ -1,28 +1,63 @@
-/* Recipes.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+}
 
-.chatbotContainer {
-    height: calc(95vh - 100px);
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: width 0.3s ease;
     width: 100%;
-    max-width: 45vw;
-    margin: 0 auto;
-    padding: 20px;
+}
+
+.cardsContainerWithSidebar {
+    width: 60%;
+}
+
+.card {
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 8px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: calc(33.333% - 16px); /* 3 cards per row */
+}
+
+.cardsContainerWithSidebar .card {
+    width: calc(50% - 16px); /* 2 cards per row when sidebar is open */
+}
+
+.card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
 }
 
-.chatbotHeader {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-
-.chatbotBody {
-    flex-grow: 1;
+.sidebar {
+    position: fixed;
+    top: 7vh;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
     display: flex;
     flex-direction: column;
+    padding: 20px;
+}
+
+.sidebarContent {
+    overflow-y: auto;
+}
+
+.closeButton {
+    font-size: 24px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.details {
+    margin-top: 16px;
 }
