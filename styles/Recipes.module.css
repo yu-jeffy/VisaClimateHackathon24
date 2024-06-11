@@ -1,6 +1,11 @@
 .container {
     display: flex;
     flex-direction: column;
+    width: 100vw;
+    height: fit-content;
+    min-height: 93vh;
+    background: #333;
+
 }
 
 .cardsContainer {
@@ -9,6 +14,7 @@
     justify-content: center;
     transition: width 0.3s ease;
     width: 100%;
+    padding: 20px;
 }
 
 .cardsContainerWithSidebar {
@@ -16,7 +22,7 @@
 }
 
 .card {
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     border-radius: 20px;
     padding: 30px;
     margin: 8px;
@@ -24,7 +30,15 @@
     transition: all 0.3s ease;
     cursor: pointer;
     width: calc(33.333% - 16px); /* 3 cards per row */
+    height: 180px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    background-color: #333;
+    color: white;
+    line-height: 1.65rem;
+    overflow: hidden;
+    word-wrap: break-word;
 }
+
 
 .cardsContainerWithSidebar .card {
     width: calc(50% - 16px); /* 2 cards per row when sidebar is open */
@@ -36,16 +50,19 @@
 
 .sidebar {
     position: fixed;
-    top: 7vh;
     right: 0;
+    top: 10%;
     width: 40%;
-    height: 100%;
-    background-color: white;
+    height: 80%;
+    background-color: #222;
+    color: white;
+    line-height: 1.65rem;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    word-wrap: break-word;
 }
 
 .sidebarContent {
@@ -56,6 +73,9 @@
     font-size: 24px;
     cursor: pointer;
     align-self: flex-end;
+    position: fixed;
+    right: 10px;
+    top: 10%;
 }
 
 .details {
