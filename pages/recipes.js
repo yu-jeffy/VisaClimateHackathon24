@@ -96,7 +96,7 @@ const Recipes = () => {
                             ]
                         }
                         `,
-                        user_prompt: `Generate a new random recipe from a random culture in JSON format. Respond with only the recipe, nothing else.
+                            user_prompt: `Generate a new random recipe from a random culture in JSON format. Respond with only the recipe, nothing else.
                         `,
                         }),
                     })
@@ -104,7 +104,14 @@ const Recipes = () => {
 
                 const responses = await Promise.all(requests);
                 const data = await Promise.all(responses.map(res => res.json()));
-                const newRecipes = data.map(d => JSON.parse(d.response));
+                const newRecipes = data.map(d => {
+                    try {
+                        return JSON.parse(d.response);
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        return null;
+                    }
+                }).filter(recipe => recipe !== null);
                 setLoading(false);
                 setRecipes(newRecipes);
             } catch (error) {
