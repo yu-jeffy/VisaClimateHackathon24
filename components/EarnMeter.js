@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styles from '../styles/EarnMeter.module.css';
 
 const EarnMeter = ({ points, goal }) => {
+    const roundedPoints = Math.floor(points);
+    const roundedGoal = Math.floor(goal);
     const percentage = Math.min((points / goal) * 100, 100);
 
     return (
@@ -14,7 +16,7 @@ const EarnMeter = ({ points, goal }) => {
                 />
             </div>
             <div className={styles.earnMeterText}>
-                {points} / {goal} points
+                {roundedPoints} / {roundedGoal} Points Earned
             </div>
         </div>
     );

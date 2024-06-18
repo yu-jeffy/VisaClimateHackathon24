@@ -58,11 +58,13 @@
     color: white;
     line-height: 1.65rem;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    border: white 3px solid;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     padding: 20px;
     word-wrap: break-word;
+    border-radius: 30px;
 }
 
 .sidebarContent {
@@ -74,10 +76,20 @@
     cursor: pointer;
     align-self: flex-end;
     position: fixed;
-    right: 10px;
-    top: 10%;
+    right: 20px;
+    top: 12%;
 }
 
 .details {
     margin-top: 16px;
+}
+
+.addButton {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #111;
+    color: white;
+    border: none;
+    border-radius: 4px;
+
 }

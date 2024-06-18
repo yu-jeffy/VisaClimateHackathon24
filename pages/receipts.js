@@ -7,14 +7,14 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     min-height: 92.5vh;
-    background-color: #f5f7fa;
-    color: #333;
-    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
 `;
 
 const Title = styled.h1`
     font-size: 2.5rem;
-    color: #4a4e69;
+    color: white;
     margin-bottom: 1.5rem;
 `;
 
@@ -22,7 +22,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #fff;
+    background: #222;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -43,7 +43,7 @@ const Input = styled.input`
 
 const Button = styled.button`
     background-color: #c9ada7;
-    color: #fff;
+    color: black;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     border: none;
@@ -51,6 +51,7 @@ const Button = styled.button`
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 2vh;
+    font-weight: bold;
 
     &:hover {
         background-color: #9a8c98;
@@ -60,7 +61,7 @@ const Button = styled.button`
 const ResponseContainer = styled.div`
     margin-top: 2rem;
     padding: 1rem;
-    background-color: #f0efeb;
+    background-color: #222;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -70,6 +71,7 @@ const ResponseContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: white;
 `;
 
 const ErrorContainer = styled(ResponseContainer)`

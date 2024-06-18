@@ -132,6 +132,17 @@ const Recipes = () => {
         setSelectedRecipe(null);
     };
 
+    const addToGroceryList = () => {
+        const existingGroceries = JSON.parse(localStorage.getItem('groceries')) || [];
+        const newGroceries = selectedRecipe.ingredients.map(ingredient => ({
+            quantity: ingredient.quantity || '',
+            name: ingredient.item,
+        }));
+        const updatedGroceries = [...existingGroceries, ...newGroceries];
+        localStorage.setItem('groceries', JSON.stringify(updatedGroceries));
+        alert('Ingredients added to grocery list');
+    };
+
     return (
         <div className={styles.container}>
             <div style={{ width: '100vw', textAlign: 'left', marginTop: '50px', marginBottom: '50px', paddingLeft: '30px', color: 'white' }}>
@@ -193,6 +204,7 @@ const Recipes = () => {
                                 ))}
                             </ul>
                         </div>
+                        <button onClick={addToGroceryList} className={styles.addButton}>Add to Grocery List</button>
                     </div>
                 </div>
             )}
