@@ -3,23 +3,26 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    background-color: #f7f8fa;
+    background-color: #333;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    width: 100vw;
+    color: white;
 }
 
 .title {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    color: #333;
+    color: white;
 }
 
 .profileInfo,
 .transactionHistory {
     width: 100%;
     max-width: 600px;
-    background-color: #fff;
+    background-color: #222;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -29,11 +32,18 @@
 .profileInfo p,
 .transactionHistory p {
     margin: 0.5rem 0;
-    color: #555;
+    color: white;
+}
+
+.profileInfo p span,
+.transactionHistory p span {
+    font-weight: bold;
+    color: #76c7c0;
+    line-height: 3rem;
 }
 
 .transactionItem {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #444;
     padding: 1rem 0;
 }
 
@@ -43,5 +53,5 @@
 
 .transactionItem p {
     margin: 0.25rem 0;
-    color: #666;
+    color: white;
 }

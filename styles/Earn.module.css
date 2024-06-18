@@ -1,48 +1,18 @@
 .earnContainer {
   padding: 2rem;
-  background-color: #f7f8fa;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  color: #eee;
 }
 
-.title {
+.title, .title2 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #333;
-}
-
-.title2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-top: 1.5rem;
-  color: #333;
-}
-
-.dropdownContainer {
-  margin-top: 2rem;
-  width: 100%;
-  max-width: 600px;
-}
-
-.label {
-  margin-right: 1rem;
-  font-size: 1rem;
-  color: #555;
-}
-
-.dropdown {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
+  color: #fff;
 }
 
 .earnForm {
@@ -53,18 +23,27 @@
   align-items: flex-start;
 }
 
-.formGroup {
-  margin-bottom: 1rem;
+.dropdownContainer, .formGroup {
+  margin-top: 2rem;
   width: 100%;
 }
 
-.input {
+.label {
+  margin-right: 1rem;
+  font-size: 1rem;
+  color: #bbb;
+}
+
+.dropdown, .input {
   width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #555;
+  background-color: #444;
+  color: #eee;
   margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .submitButton {
@@ -86,5 +65,5 @@
 .message {
   margin-top: 1rem;
   font-size: 1rem;
-  color: green;
+  color: #76c7c0;
 }
