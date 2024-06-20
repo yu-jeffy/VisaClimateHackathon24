@@ -23,13 +23,13 @@
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.299);
 }
 
 .profileInfo p,
 .transactionHistory p {
     margin: 0.5rem 0;
-    color: #555;
+    color: #3a3a3a;;
 }
 
 .transactionItem {
@@ -43,5 +43,5 @@
 
 .transactionItem p {
     margin: 0.25rem 0;
-    color: #666;
+    color: #3a3a3a;
 }

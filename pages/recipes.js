@@ -6,15 +6,34 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { ThreeDots } from 'react-loader-spinner';
+import SearchBar from './searchbar';
 
 const Recipes = () => {
     const { user } = useUser();
     const [userData, setUserData] = useState(null);
     const [txHistory, setTxHistory] = useState([]);
     const [recipes, setRecipes] = useState([]);
+    const [filteredRecipes, setFilteredRecipes] = useState(null);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
+    const [numberFieldValues, setNumberFieldValues] = useState({
+        Search: '',
+        Calories: '',
+        Protein: '',
+        Fat: '',
+        Carbohydrates: '',
+        Fiber: '',
+        Sugar: '',
+        Sodium: ''
+      });
+    
+      const handleNumberFieldChange = (field, value) => {
+        setNumberFieldValues(prevValues => ({
+          ...prevValues,
+          [field]: value
+        }));
+      };
 
     useEffect(() => {
         if (user) {
@@ -114,6 +133,7 @@ const Recipes = () => {
                 }).filter(recipe => recipe !== null);
                 setLoading(false);
                 setRecipes(newRecipes);
+                setFilteredRecipes(newRecipes);
             } catch (error) {
                 console.error('Error fetching recipes:', error);
                 setLoading(false);
@@ -132,11 +152,44 @@ const Recipes = () => {
         setSelectedRecipe(null);
     };
 
+    const filterRecipes = () => {
+        const termsArray = numberFieldValues.Search.trim().toLowerCase().split(',').map(term => term.trim());
+        const nutritionArray = [numberFieldValues.Calories, numberFieldValues.Protein , numberFieldValues.Fat , numberFieldValues.Carbohydrates,
+            numberFieldValues.Fiber, numberFieldValues.Sugar, numberFieldValues.Sodium]
+
+        const filtered = recipes.filter(recipe => {
+            const matchSearch = termsArray.some(term => recipe.ingredients.some(ingredient =>
+                ingredient.item.toLowerCase().includes(term))) ||
+            termsArray.some(term => recipe.instructions.some(instruction =>
+                instruction.toLowerCase().includes(term))) ||
+            termsArray.some(term => recipe.description.toLowerCase().includes(term)) ||
+            termsArray.some(term => recipe.name.toLowerCase().includes(term))
+
+
+            const nutritionValues = recipe.nutritionFacts.map(fact => parseInt(Object.values(fact)[0].replace(/[^0-9]/g, '')));
+            const matchNutrition = nutritionValues.every((value, index) => value >= nutritionArray[index])
+
+            return matchSearch && matchNutrition
+        });
+        setFilteredRecipes(filtered);
+    };
+
+    const handleSearchClick = () => {
+        filterRecipes();
+    };
+
     return (
         <div className={styles.container}>
-            <div style={{ width: '100vw', textAlign: 'left', marginTop: '50px', marginBottom: '50px', paddingLeft: '30px', color: 'white' }}>
-                <h1>Recipes</h1>
+            <div className={styles.title}>
+                <div style={{alignItems:'left', textAlign: 'left', marginTop: '50px', marginBottom: '50px', paddingLeft: '30px', color: 'white' }}>
+                    <h1>Recipes</h1>
+                </div>
+
+                <div>
+                    <SearchBar onNumberFieldChange={handleNumberFieldChange} numberFieldValues={numberFieldValues} handleSearchClick={handleSearchClick}/>
+                </div>
             </div>
+
             {loading ? (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
                     <ThreeDots
@@ -150,7 +203,7 @@ const Recipes = () => {
                 </div>
             ) : (
                 <div className={`${styles.cardsContainer} ${selectedRecipe ? styles.cardsContainerWithSidebar : ''}`}>
-                    {recipes.map((recipe, index) => (
+                    {filteredRecipes.map((recipe, index) => (
                         <div
                             key={index}
                             className={styles.card}
@@ -161,6 +214,7 @@ const Recipes = () => {
                         </div>
                     ))}
                 </div>
+                
             )}
             {selectedRecipe && (
                 <div className={styles.sidebar}>

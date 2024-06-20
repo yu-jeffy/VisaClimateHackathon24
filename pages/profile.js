@@ -36,11 +36,11 @@ export default function Profile() {
       <h1 className={styles.title}>User Profile</h1>
       {userData && (
         <div className={styles.profileInfo}>
-          <p>Email: {userData.email}</p>
-          <p>Annual Income: ${userData.annual_income}</p>
-          <p>Family Size: {userData.family_size}</p>
-          <p>Points Current Month: {userData.points_current_month}</p>
-          <p>Points Lifetime: {userData.points_lifetime}</p>
+          <p><strong>Email:</strong> {userData.email}</p>
+          <p><strong>Annual Income:</strong> ${userData.annual_income}</p>
+          <p><strong>Family Size:</strong> {userData.family_size}</p>
+          <p><strong>Points Current Month:</strong> {userData.points_current_month}</p>
+          <p><strong>Points Lifetime:</strong> {userData.points_lifetime}</p>
         </div>
       )}
       <h2 className={styles.title}>Transaction History</h2>
@@ -48,9 +48,9 @@ export default function Profile() {
         <div className={styles.transactionHistory}>
           {txHistory.map((tx) => (
             <div key={tx.tx_id} className={styles.transactionItem}>
-              <p>Store: {tx.name_id}</p>
-              <p>Amount: ${tx.amount}</p>
-              <p>Claimed: {tx.claimed ? 'Yes' : 'No'}</p>
+              <p><strong>Store:</strong> {tx.name_id}</p>
+              <p><strong>Amount:</strong> ${tx.amount}</p>
+              <p><strong>Claimed:</strong> {tx.claimed ? 'Yes' : 'No'}</p>
             </div>
           ))}
         </div>
