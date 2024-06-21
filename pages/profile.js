@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { db } from '../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import styles from '../styles/Profile.module.css';
 
 export default function Profile() {
   const { user } = useUser();
   const [userData, setUserData] = useState(null);
   const [txHistory, setTxHistory] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
@@ -36,11 +37,11 @@ export default function Profile() {
       <h1 className={styles.title}>User Profile</h1>
       {userData && (
         <div className={styles.profileInfo}>
-          <p><strong>Email:</strong> {userData.email}</p>
-          <p><strong>Annual Income:</strong> ${userData.annual_income}</p>
-          <p><strong>Family Size:</strong> {userData.family_size}</p>
-          <p><strong>Points Current Month:</strong> {userData.points_current_month}</p>
-          <p><strong>Points Lifetime:</strong> {userData.points_lifetime}</p>
+          <p><span>Email:</span> {userData.email}</p>
+          <p><span>Annual Income:</span> ${userData.annual_income}</p>
+          <p><span>Family Size:</span> {userData.family_size}</p>
+          <p><span>Points Current Month:</span> {userData.points_current_month}</p>
+          <p><span>Points Lifetime:</span> {userData.points_lifetime}</p>
         </div>
       )}
       <h2 className={styles.title}>Transaction History</h2>
@@ -48,9 +49,9 @@ export default function Profile() {
         <div className={styles.transactionHistory}>
           {txHistory.map((tx) => (
             <div key={tx.tx_id} className={styles.transactionItem}>
-              <p><strong>Store:</strong> {tx.name_id}</p>
-              <p><strong>Amount:</strong> ${tx.amount}</p>
-              <p><strong>Claimed:</strong> {tx.claimed ? 'Yes' : 'No'}</p>
+              <p><span>Store:</span> {tx.name_id}</p>
+              <p><span>Amount:</span> ${tx.amount}</p>
+              <p><span>Claimed:</span> {tx.claimed ? 'Yes' : 'No'}</p>
             </div>
           ))}
         </div>

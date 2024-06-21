@@ -4,7 +4,8 @@
     align-items: center;
     width: 100%;
     max-width: 600px;
-    margin: 1rem 0;
+    margin-top: 5vh;
+    margin-bottom: 7vh;
 }
 
 .earnMeter {
@@ -24,6 +25,6 @@
 
 .earnMeterText {
     font-size: 14px;
-    color: #333;
+    color: white;
     margin-top: 10px;
 }
