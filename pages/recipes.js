@@ -176,6 +176,7 @@ const Recipes = () => {
 
     const handleSearchClick = () => {
         filterRecipes();
+    }
 
     const addToGroceryList = () => {
         const existingGroceries = JSON.parse(localStorage.getItem('groceries')) || [];
