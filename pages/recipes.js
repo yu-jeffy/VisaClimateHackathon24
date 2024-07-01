@@ -166,7 +166,7 @@ const Recipes = () => {
             termsArray.some(term => recipe.name.toLowerCase().includes(term))
 
 
-            const nutritionValues = recipe.nutritionFacts.map(fact => parseInt(Object.values(fact)[0].replace(/[^0-9]/g, '')));
+            const nutritionValues = recipe.nutritionFacts?.map(fact => parseInt(Object.values(fact)[0].replace(/[^0-9]/g, ''))) || [];
             const matchNutrition = nutritionValues.every((value, index) => value >= nutritionArray[index])
 
             return matchSearch && matchNutrition
