@@ -25,7 +25,7 @@ function Home() {
         <section className={styles.features}>
           <div className={styles.feature}>
             <h3>Track Your Impact</h3>
-            <p>Monitor your eco-friendly purchases and see the positive impact you're making on the environment.</p>
+            <p>Monitor your eco-friendly purchases and see the positive impact you&apos;re making on the environment.</p>
           </div>
           <div className={styles.feature}>
             <h3>Earn Points</h3>
